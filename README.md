@@ -57,6 +57,8 @@ AdFlow Pro utilizes a rigid state machine for ad listings. Every ad strictly tra
 - **Robust Image Proxy Fallback:** Because clients can paste external image URLs from across the internet, the frontend employs a custom `<MediaPreview>` system. If a user inputs a blocked or broken `CORS` URL, the system attempts to intercept it and route it through a universal image proxy cache. If the image is entirely dead, it systematically fails gracefully to a styled placeholder rather than crashing the page.
 - **Database Security Bypass Handlers:** To prevent rogue API requests, Supabase strictly denies direct SQL `UPDATE` queries to any Ad not in the "Draft" state. Therefore, complex actions like "Ad Renewals" are executed by a highly restricted server-side Route handler (`/api/client/ads/[id]`) that securely utilizes elevated privileges (`createAdminClient`) to forcefully execute the transition after verifying user ownership.
 - **Dynamic Mobile Architectures:** The complex vertical Admin Dashboards automatically condense down to a sliding mobile "Hamburger Drawer" navigation on smaller viewports, ensuring content grids never break bounds on phones.
+"We used GitHub Actions + API Cron Routes to handle time-sensitive state transitions. This decouples user-triggered actions from system-managed lifecycle tasks, ensuring the marketplace remains automated and self-sustaining 24/7."
+
 
 ---
 
