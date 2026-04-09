@@ -17,7 +17,7 @@ export async function GET(
 
     const { data: ad, error } = await supabase
       .from("ads")
-      .select("*, media:ad_media(original_url)")
+      .select("*, media:ad_media(original_url), package:packages(name, price)")
       .eq("id", id)
       .eq("user_id", user.id)
       .single();
