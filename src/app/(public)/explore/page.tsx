@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AdCard } from "@/components/ad-card";
 
-export default function ExplorePage() {
+function ExploreContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [ads, setAds] = useState<any[]>([]);
@@ -22,6 +22,7 @@ export default function ExplorePage() {
   useEffect(() => {
     fetchAds();
     fetchFilters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.toString()]);
 
   async function fetchAds() {
@@ -142,5 +143,13 @@ export default function ExplorePage() {
         Showing {ads.length} of {pagination.total} results
       </p>
     </div>
+  );
+}
+
+export default function ExplorePage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-muted">Loading explore...</div>}>
+      <ExploreContent />
+    </Suspense>
   );
 }
