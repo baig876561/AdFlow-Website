@@ -3,6 +3,32 @@ import { updateAdSchema } from "@/lib/validations/ads";
 import { normalizeMedia } from "@/lib/utils/media";
 import { ALLOWED_TRANSITIONS, type AdStatus } from "@/lib/types";
 
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) return Response.json({ success: false, error: "Unauthorized" }, { status: 401 });
+
+    const { data: ad, error } = await supabase
+      .from("ads")
+      .select("*, media:ad_media(original_url)")
+      .eq("id", id)
+      .eq("user_id", user.id)
+      .single();
+
+    if (error || !ad) return Response.json({ success: false, error: "Ad not found" }, { status: 404 });
+
+    return Response.json({ success: true, data: ad });
+  } catch (err: any) {
+    return Response.json({ success: false, error: "Failed to fetch ad" }, { status: 500 });
+  }
+}
+
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

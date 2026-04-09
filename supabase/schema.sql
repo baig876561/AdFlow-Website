@@ -357,7 +357,9 @@ CREATE POLICY "Moderators can view submitted/review ads" ON public.ads
 CREATE POLICY "Users can insert own ads" ON public.ads
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Users can update own draft ads" ON public.ads
-  FOR UPDATE USING (auth.uid() = user_id AND status IN ('Draft', 'Rejected'));
+  FOR UPDATE 
+  USING (auth.uid() = user_id AND status IN ('Draft', 'Rejected'))
+  WITH CHECK (auth.uid() = user_id AND status IN ('Draft', 'Rejected', 'Submitted'));
 CREATE POLICY "Moderators can update ads for review" ON public.ads
   FOR UPDATE USING (
     EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid() AND role IN ('moderator', 'admin', 'super_admin'))
