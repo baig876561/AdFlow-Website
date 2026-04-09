@@ -1,0 +1,23 @@
+name: Scheduled Cron Jobs
+on:
+  schedule:
+    # Runs every 15 minutes
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  run-crons:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Publish Scheduled Ads API
+        run: |
+          curl -s -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" "${{ secrets.NEXT_PUBLIC_APP_URL }}/api/cron/publish-scheduled"
+      
+      - name: Ping Expire Ads API
+        # Only run this step on the hour (when the current minute is between 00 and 14)
+        run: |
+          if [ $(date +%M) -lt 15 ]; then
+            curl -s -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" "${{ secrets.NEXT_PUBLIC_APP_URL }}/api/cron/expire-ads"
+          else
+            echo "Skipping hourly expire-ads job"
+          fi
