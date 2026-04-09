@@ -290,17 +290,29 @@ ALTER TABLE public.learning_questions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.system_health_logs ENABLE ROW LEVEL SECURITY;
 
 -- USERS policies
+CREATE OR REPLACE FUNCTION public.get_my_role()
+RETURNS text
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT role FROM public.users WHERE id = auth.uid();
+$$;
+
 CREATE POLICY "Users can view own profile" ON public.users
   FOR SELECT USING (auth.uid() = id);
+
 CREATE POLICY "Admins can view all users" ON public.users
   FOR SELECT USING (
-    EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid() AND role IN ('admin', 'super_admin'))
+    public.get_my_role() IN ('admin', 'super_admin')
   );
+
 CREATE POLICY "Users can update own profile" ON public.users
   FOR UPDATE USING (auth.uid() = id);
+
 CREATE POLICY "Admins can update any user" ON public.users
   FOR UPDATE USING (
-    EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid() AND role IN ('admin', 'super_admin'))
+    public.get_my_role() IN ('admin', 'super_admin')
   );
 
 -- SELLER PROFILES policies
