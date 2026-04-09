@@ -39,11 +39,13 @@ export default function AdminAnalyticsPage() {
         <h3 className="text-sm font-semibold mb-6">Monthly Revenue</h3>
         <div className="flex items-end gap-3 h-48">
           {data.monthlyRevenue.map((m: any) => (
-            <div key={m.month} className="flex-1 flex flex-col items-center gap-2">
-              <span className="text-[10px] font-medium text-foreground">{formatCurrency(m.revenue)}</span>
-              <div className="w-full rounded-t-lg bg-gradient-to-t from-primary/50 to-primary transition-all duration-500"
-                style={{ height: `${Math.max(4, (m.revenue / maxRevenue) * 100)}%` }} />
-              <span className="text-[10px] text-muted">{m.month.split(" ")[0]}</span>
+            <div key={m.month} className="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+              <span className="text-[10px] font-medium text-foreground shrink-0">{formatCurrency(m.revenue)}</span>
+              <div className="w-full flex-1 flex items-end">
+                <div className="w-full rounded-t-lg bg-gradient-to-t from-primary/50 to-primary transition-all duration-500"
+                  style={{ height: `${Math.max(4, (m.revenue / maxRevenue) * 100)}%` }} />
+              </div>
+              <span className="text-[10px] text-muted shrink-0">{m.month.split(" ")[0]}</span>
             </div>
           ))}
         </div>
