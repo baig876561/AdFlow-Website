@@ -115,49 +115,50 @@ interface AdTemplate {
   categorySlug: string;
   status: string;
   packageSlug: string;
+  imageUrl: string;
 }
 
 const AD_TEMPLATES: AdTemplate[] = [
   // Draft (3)
-  { title: "Brand New MacBook Pro 16-inch M3 Max", description: "Selling my brand new MacBook Pro 16-inch with M3 Max chip. 36GB RAM, 1TB SSD. Sealed in box, comes with original Apple warranty. Perfect for developers, designers, and video editors. Local pickup preferred.", categorySlug: "electronics", status: "Draft", packageSlug: "basic" },
-  { title: "Handcrafted Wooden Dining Table", description: "Beautiful handcrafted solid oak dining table, seats 6-8 people. Custom made by local woodworker. Dimensions: 72x36 inches. Some minor scratches consistent with handmade furniture. Must see to appreciate the quality.", categorySlug: "home-garden", status: "Draft", packageSlug: "standard" },
-  { title: "Professional Photography Services", description: "Professional photographer offering portrait, event, and product photography services. 10+ years of experience with weddings, corporate events, and studio shoots. Flexible packages available. Portfolio available upon request.", categorySlug: "services", status: "Draft", packageSlug: "premium" },
+  { title: "Brand New MacBook Pro 16-inch M3 Max", description: "Selling my brand new MacBook Pro 16-inch with M3 Max chip. 36GB RAM, 1TB SSD. Sealed in box, comes with original Apple warranty. Perfect for developers, designers, and video editors. Local pickup preferred.", categorySlug: "electronics", status: "Draft", packageSlug: "basic", imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80" },
+  { title: "Handcrafted Wooden Dining Table", description: "Beautiful handcrafted solid oak dining table, seats 6-8 people. Custom made by local woodworker. Dimensions: 72x36 inches. Some minor scratches consistent with handmade furniture. Must see to appreciate the quality.", categorySlug: "home-garden", status: "Draft", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=800&q=80" },
+  { title: "Professional Photography Services", description: "Professional photographer offering portrait, event, and product photography services. 10+ years of experience with weddings, corporate events, and studio shoots. Flexible packages available. Portfolio available upon request.", categorySlug: "services", status: "Draft", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80" },
 
   // Submitted (2)
-  { title: "2022 Tesla Model 3 Long Range", description: "Pristine 2022 Tesla Model 3 Long Range in Pearl White. Only 15,000 miles. Full Self-Driving capability included. Premium interior, glass roof, 19-inch sport wheels. Clean title, no accidents. Home charger included.", categorySlug: "vehicles", status: "Submitted", packageSlug: "premium" },
-  { title: "Vintage Leather Jacket Collection", description: "Curated collection of authentic vintage leather jackets from the 1970s-1990s. Various sizes (S-XL) and styles including biker, bomber, and cafe racer. All in excellent condition. Selling individually or as a lot.", categorySlug: "fashion", status: "Submitted", packageSlug: "standard" },
+  { title: "2022 Tesla Model 3 Long Range", description: "Pristine 2022 Tesla Model 3 Long Range in Pearl White. Only 15,000 miles. Full Self-Driving capability included. Premium interior, glass roof, 19-inch sport wheels. Clean title, no accidents. Home charger included.", categorySlug: "vehicles", status: "Submitted", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80" },
+  { title: "Vintage Leather Jacket Collection", description: "Curated collection of authentic vintage leather jackets from the 1970s-1990s. Various sizes (S-XL) and styles including biker, bomber, and cafe racer. All in excellent condition. Selling individually or as a lot.", categorySlug: "fashion", status: "Submitted", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80" },
 
   // Under Review (2)
-  { title: "Downtown Luxury Condo for Sale", description: "Stunning 2BR/2BA luxury condo in the heart of downtown. Floor-to-ceiling windows with panoramic city views. Modern kitchen with top-of-the-line appliances. Building amenities include gym, pool, rooftop terrace, and 24/7 concierge. Parking included.", categorySlug: "real-estate", status: "Under Review", packageSlug: "premium" },
-  { title: "Senior Software Engineer Position", description: "Exciting opportunity for a Senior Software Engineer at a growing tech startup. Work with cutting-edge technologies including React, Node.js, and AWS. Competitive salary ($150K-$200K), equity, full benefits, and flexible remote work. 5+ years experience required.", categorySlug: "jobs", status: "Under Review", packageSlug: "standard" },
+  { title: "Downtown Luxury Condo for Sale", description: "Stunning 2BR/2BA luxury condo in the heart of downtown. Floor-to-ceiling windows with panoramic city views. Modern kitchen with top-of-the-line appliances. Building amenities include gym, pool, rooftop terrace, and 24/7 concierge. Parking included.", categorySlug: "real-estate", status: "Under Review", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1502672260266-1c1f2d9368ce?w=800&q=80" },
+  { title: "Senior Software Engineer Position", description: "Exciting opportunity for a Senior Software Engineer at a growing tech startup. Work with cutting-edge technologies including React, Node.js, and AWS. Competitive salary ($150K-$200K), equity, full benefits, and flexible remote work. 5+ years experience required.", categorySlug: "jobs", status: "Under Review", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" },
 
   // Payment Pending (2)
-  { title: "Complete Home Gym Setup", description: "Full home gym setup including commercial-grade power rack, Olympic barbell and plates (300lbs total), adjustable dumbbells (5-90lbs), flat/incline bench, cable machine, and rubber flooring. Everything in excellent condition. Downsizing, must sell.", categorySlug: "sports-outdoors", status: "Payment Pending", packageSlug: "standard" },
-  { title: "Online Math Tutoring - All Levels", description: "Experienced math tutor offering online lessons for all levels from elementary to college. Specializing in algebra, calculus, statistics, and SAT/ACT prep. Flexible scheduling, one-on-one sessions. First lesson free! Over 200 students helped.", categorySlug: "education", status: "Payment Pending", packageSlug: "basic" },
+  { title: "Complete Home Gym Setup", description: "Full home gym setup including commercial-grade power rack, Olympic barbell and plates (300lbs total), adjustable dumbbells (5-90lbs), flat/incline bench, cable machine, and rubber flooring. Everything in excellent condition. Downsizing, must sell.", categorySlug: "sports-outdoors", status: "Payment Pending", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" },
+  { title: "Online Math Tutoring - All Levels", description: "Experienced math tutor offering online lessons for all levels from elementary to college. Specializing in algebra, calculus, statistics, and SAT/ACT prep. Flexible scheduling, one-on-one sessions. First lesson free! Over 200 students helped.", categorySlug: "education", status: "Payment Pending", packageSlug: "basic", imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" },
 
   // Payment Submitted (2)
-  { title: "Organic Skincare Products Bundle", description: "Premium organic skincare bundle featuring all-natural ingredients. Includes cleanser, toner, serum, moisturizer, and eye cream. Suitable for all skin types. Cruelty-free and vegan. Retail value $200, selling bundle for a fraction of the price.", categorySlug: "health-beauty", status: "Payment Submitted", packageSlug: "standard" },
-  { title: "4K Drone with Camera - DJI Mavic 3", description: "DJI Mavic 3 Cine Premium Combo. Hasselblad camera, 5.1K video, 46-min flight time. Includes 3 batteries, ND filters, carrying case, and extra propellers. Used for only 5 flights. Perfect for aerial photography enthusiasts.", categorySlug: "electronics", status: "Payment Submitted", packageSlug: "premium" },
+  { title: "Organic Skincare Products Bundle", description: "Premium organic skincare bundle featuring all-natural ingredients. Includes cleanser, toner, serum, moisturizer, and eye cream. Suitable for all skin types. Cruelty-free and vegan. Retail value $200, selling bundle for a fraction of the price.", categorySlug: "health-beauty", status: "Payment Submitted", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80" },
+  { title: "4K Drone with Camera - DJI Mavic 3", description: "DJI Mavic 3 Cine Premium Combo. Hasselblad camera, 5.1K video, 46-min flight time. Includes 3 batteries, ND filters, carrying case, and extra propellers. Used for only 5 flights. Perfect for aerial photography enthusiasts.", categorySlug: "electronics", status: "Payment Submitted", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80" },
 
   // Payment Verified (2)
-  { title: "Beachfront Vacation Rental", description: "Beautiful beachfront property available for weekly or monthly rental. 3 bedrooms, 2 bathrooms, fully furnished. Direct beach access, private balcony with ocean views. Central A/C, washer/dryer, modern kitchen. Perfect for families or remote workers.", categorySlug: "real-estate", status: "Payment Verified", packageSlug: "premium" },
-  { title: "Custom Built Gaming PC - RTX 4090", description: "Custom built high-end gaming PC. Specs: Intel i9-14900K, RTX 4090, 64GB DDR5 RAM, 2TB NVMe SSD, 360mm AIO cooler, Corsair 5000D case. RGB throughout. Runs any game at 4K Ultra. Built 3 months ago.", categorySlug: "electronics", status: "Payment Verified", packageSlug: "standard" },
+  { title: "Beachfront Vacation Rental", description: "Beautiful beachfront property available for weekly or monthly rental. 3 bedrooms, 2 bathrooms, fully furnished. Direct beach access, private balcony with ocean views. Central A/C, washer/dryer, modern kitchen. Perfect for families or remote workers.", categorySlug: "real-estate", status: "Payment Verified", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80" },
+  { title: "Custom Built Gaming PC - RTX 4090", description: "Custom built high-end gaming PC. Specs: Intel i9-14900K, RTX 4090, 64GB DDR5 RAM, 2TB NVMe SSD, 360mm AIO cooler, Corsair 5000D case. RGB throughout. Runs any game at 4K Ultra. Built 3 months ago.", categorySlug: "electronics", status: "Payment Verified", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=800&q=80" },
 
   // Scheduled (1)
-  { title: "Professional Home Cleaning Service", description: "Top-rated professional home cleaning service. Deep cleaning, regular maintenance, move-in/move-out cleaning. Licensed, bonded, and insured. Eco-friendly products used. Serving the greater metro area. Book online for 10% off first visit.", categorySlug: "services", status: "Scheduled", packageSlug: "premium" },
+  { title: "Professional Home Cleaning Service", description: "Top-rated professional home cleaning service. Deep cleaning, regular maintenance, move-in/move-out cleaning. Licensed, bonded, and insured. Eco-friendly products used. Serving the greater metro area. Book online for 10% off first visit.", categorySlug: "services", status: "Scheduled", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" },
 
   // Published (7)
-  { title: "iPhone 15 Pro Max - 256GB Natural Titanium", description: "iPhone 15 Pro Max in Natural Titanium, 256GB. Excellent condition, always used with case and screen protector. Battery health at 97%. Comes with original box, charging cable, and a premium leather case. Unlocked for all carriers.", categorySlug: "electronics", status: "Published", packageSlug: "premium" },
-  { title: "Restored 1967 Ford Mustang Fastback", description: "Beautifully restored 1967 Ford Mustang Fastback. Matching numbers 289 V8 engine. Highland Green exterior, black interior. Frame-off restoration completed in 2023. All original parts restored. Show-quality finish. Must sell due to relocation.", categorySlug: "vehicles", status: "Published", packageSlug: "premium" },
-  { title: "Luxury 3BR Apartment - Central Park View", description: "Spacious 3-bedroom luxury apartment with stunning Central Park views. Newly renovated with hardwood floors, marble bathrooms, chef's kitchen. Doorman building with gym and rooftop. Walking distance to subway. Available immediately.", categorySlug: "real-estate", status: "Published", packageSlug: "premium" },
-  { title: "Designer Wedding Dress - Vera Wang", description: "Stunning Vera Wang wedding dress, worn once. Size 6, cathedral-length train. Hand-beaded bodice with Swarovski crystals. Professionally cleaned and preserved. Originally $8,000. Includes custom veil and garment bag.", categorySlug: "fashion", status: "Published", packageSlug: "standard" },
-  { title: "Smart Home Installation & Setup", description: "Complete smart home installation service. We handle everything: smart lighting, thermostats, security cameras, door locks, voice assistants, and home theater. Licensed electricians on staff. Free consultation and custom quotes. Serving all neighborhoods.", categorySlug: "services", status: "Published", packageSlug: "standard" },
-  { title: "Mountain Bike - Specialized Stumpjumper", description: "2023 Specialized Stumpjumper Expert. Carbon frame, SRAM GX Eagle drivetrain, Fox 36 fork. Size Large. Used for one season, well maintained. Includes tubeless setup, Maxxis tires, and dropper post. Great trail bike.", categorySlug: "sports-outdoors", status: "Published", packageSlug: "basic" },
-  { title: "Private SAT/ACT Prep Course", description: "Comprehensive SAT/ACT prep course with proven results. Average score improvement of 200+ points. Includes practice tests, study materials, and personalized study plan. Small groups (max 5 students) or private sessions available. Taught by 99th percentile scorer.", categorySlug: "education", status: "Published", packageSlug: "basic" },
+  { title: "iPhone 15 Pro Max - 256GB Natural Titanium", description: "iPhone 15 Pro Max in Natural Titanium, 256GB. Excellent condition, always used with case and screen protector. Battery health at 97%. Comes with original box, charging cable, and a premium leather case. Unlocked for all carriers.", categorySlug: "electronics", status: "Published", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&q=80" },
+  { title: "Restored 1967 Ford Mustang Fastback", description: "Beautifully restored 1967 Ford Mustang Fastback. Matching numbers 289 V8 engine. Highland Green exterior, black interior. Frame-off restoration completed in 2023. All original parts restored. Show-quality finish. Must sell due to relocation.", categorySlug: "vehicles", status: "Published", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1584345604476-8cc5e3f54f58?w=800&q=80" },
+  { title: "Luxury 3BR Apartment - Central Park View", description: "Spacious 3-bedroom luxury apartment with stunning Central Park views. Newly renovated with hardwood floors, marble bathrooms, chef's kitchen. Doorman building with gym and rooftop. Walking distance to subway. Available immediately.", categorySlug: "real-estate", status: "Published", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80" },
+  { title: "Designer Wedding Dress - Vera Wang", description: "Stunning Vera Wang wedding dress, worn once. Size 6, cathedral-length train. Hand-beaded bodice with Swarovski crystals. Professionally cleaned and preserved. Originally $8,000. Includes custom veil and garment bag.", categorySlug: "fashion", status: "Published", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1594552072238-18e388ff2ba1?w=800&q=80" },
+  { title: "Smart Home Installation & Setup", description: "Complete smart home installation service. We handle everything: smart lighting, thermostats, security cameras, door locks, voice assistants, and home theater. Licensed electricians on staff. Free consultation and custom quotes. Serving all neighborhoods.", categorySlug: "services", status: "Published", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80" },
+  { title: "Mountain Bike - Specialized Stumpjumper", description: "2023 Specialized Stumpjumper Expert. Carbon frame, SRAM GX Eagle drivetrain, Fox 36 fork. Size Large. Used for one season, well maintained. Includes tubeless setup, Maxxis tires, and dropper post. Great trail bike.", categorySlug: "sports-outdoors", status: "Published", packageSlug: "basic", imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80" },
+  { title: "Private SAT/ACT Prep Course", description: "Comprehensive SAT/ACT prep course with proven results. Average score improvement of 200+ points. Includes practice tests, study materials, and personalized study plan. Small groups (max 5 students) or private sessions available. Taught by 99th percentile scorer.", categorySlug: "education", status: "Published", packageSlug: "basic", imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80" },
 
   // Expired (2)
-  { title: "Summer Camp Registration - Early Bird", description: "STEM-focused summer camp for kids ages 8-14. Robotics, coding, 3D printing, and drone piloting. Weekly sessions from June to August. Early bird pricing available until March 31. Certified instructors, small class sizes.", categorySlug: "education", status: "Expired", packageSlug: "standard" },
-  { title: "Year-End Clearance - Furniture Store", description: "Massive year-end clearance sale on all furniture. Up to 70% off on sofas, beds, dining sets, and home decor. Free delivery on orders over $500. Limited stock - first come, first served. Financing available.", categorySlug: "home-garden", status: "Expired", packageSlug: "premium" },
+  { title: "Summer Camp Registration - Early Bird", description: "STEM-focused summer camp for kids ages 8-14. Robotics, coding, 3D printing, and drone piloting. Weekly sessions from June to August. Early bird pricing available until March 31. Certified instructors, small class sizes.", categorySlug: "education", status: "Expired", packageSlug: "standard", imageUrl: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80" },
+  { title: "Year-End Clearance - Furniture Store", description: "Massive year-end clearance sale on all furniture. Up to 70% off on sofas, beds, dining sets, and home decor. Free delivery on orders over $500. Limited stock - first come, first served. Financing available.", categorySlug: "home-garden", status: "Expired", packageSlug: "premium", imageUrl: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80" },
 ];
 
 // ============================================================
@@ -332,30 +333,40 @@ async function seedAds(
 
     createdAds.push(ad);
 
-    // Add media
-    const numMedia = Math.floor(Math.random() * 3) + 1;
-    for (let m = 0; m < numMedia; m++) {
-      const isYouTube = m === 0 && Math.random() > 0.7;
-      const url = isYouTube
+    // Add designated template image
+    await supabase.from("ad_media").insert({
+      ad_id: ad.id,
+      source_type: "image",
+      original_url: template.imageUrl,
+      thumbnail_url: template.imageUrl,
+      validation_status: "valid",
+      display_order: 0,
+    });
+
+    // Optionally add a random secondary image or youtube video
+    const addSecondary = Math.random() > 0.5;
+    if (addSecondary) {
+      const isYouTube = Math.random() > 0.7;
+      const secUrl = isYouTube
         ? YOUTUBE_URLS[Math.floor(Math.random() * YOUTUBE_URLS.length)]
-        : SAMPLE_IMAGES[(i + m) % SAMPLE_IMAGES.length];
+        : SAMPLE_IMAGES[Math.floor(Math.random() * SAMPLE_IMAGES.length)];
 
       const sourceType = isYouTube ? "youtube" : "image";
-      let thumbnailUrl = url;
+      let thumbnailUrl = secUrl;
       if (isYouTube) {
-        const match = url.match(/(?:watch\?v=|embed\/|v\/)([\w-]{11})/);
+        const match = secUrl.match(/(?:watch\?v=|embed\/|v\/)([\w-]{11})/);
         thumbnailUrl = match
           ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg`
-          : url;
+          : secUrl;
       }
 
       await supabase.from("ad_media").insert({
         ad_id: ad.id,
         source_type: sourceType,
-        original_url: url,
+        original_url: secUrl,
         thumbnail_url: thumbnailUrl,
         validation_status: "valid",
-        display_order: m,
+        display_order: 1,
       });
     }
 
