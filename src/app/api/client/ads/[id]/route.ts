@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { updateAdSchema } from "@/lib/validations/ads";
 import { normalizeMedia } from "@/lib/utils/media";
 import { ALLOWED_TRANSITIONS, type AdStatus } from "@/lib/types";
@@ -82,16 +83,25 @@ export async function PATCH(
       }
     }
 
-    // Only allow editing if in Draft or Rejected
-    if (!["Draft", "Rejected"].includes(existingAd.status) && !newStatus) {
+    // Only allow editing if in Draft or Rejected, except for renewing Expired/Archived
+    const isRenewing = ["Expired", "Archived"].includes(existingAd.status) && newStatus === "Draft";
+    if (!["Draft", "Rejected"].includes(existingAd.status) && !newStatus && !isRenewing) {
       return Response.json(
         { success: false, error: "Can only edit ads in Draft or Rejected status" },
         { status: 400 }
       );
     }
+    if (!["Draft", "Rejected"].includes(existingAd.status) && newStatus && !isRenewing) {
+      // If we are trying to transition a non-draft ad to something else (e.g. submitting), and it's not a renewal, block it unless we are just submitting a Draft/Rejected.
+      if (newStatus !== "Submitted") {
+         return Response.json({ success: false, error: "Invalid ad state for editing." }, { status: 400 });
+      }
+    }
+
+    const adminSupabase = createAdminClient();
 
     // Update ad
-    const { data: updatedAd, error } = await supabase
+    const { data: updatedAd, error } = await adminSupabase
       .from("ads")
       .update({
         ...updateData,
