@@ -54,7 +54,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in relative">
+      <Link href="/" className="absolute -top-10 sm:-top-12 left-0 text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
+        ← Back to Home
+      </Link>
+
       <div className="text-center mb-8">
         <Link href="/" className="inline-flex items-center gap-2.5">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg">
