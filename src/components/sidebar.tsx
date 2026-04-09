@@ -15,11 +15,9 @@ const roleMenus: Record<UserRole, { href: string; label: string; icon: string }[
   client: [
     { href: "/client", label: "Dashboard", icon: "📊" },
     { href: "/client/ads/new", label: "Create Ad", icon: "➕" },
-    { href: "/", label: "Back to Site", icon: "🏠" },
   ],
   moderator: [
     { href: "/moderator", label: "Review Queue", icon: "📋" },
-    { href: "/", label: "Back to Site", icon: "🏠" },
   ],
   admin: [
     { href: "/admin", label: "Dashboard", icon: "📊" },
@@ -27,7 +25,6 @@ const roleMenus: Record<UserRole, { href: string; label: string; icon: string }[
     { href: "/admin/analytics", label: "Analytics", icon: "📈" },
     { href: "/admin/users", label: "Users", icon: "👥" },
     { href: "/admin/health", label: "System Health", icon: "💓" },
-    { href: "/", label: "Back to Site", icon: "🏠" },
   ],
   super_admin: [
     { href: "/admin", label: "Dashboard", icon: "📊" },
@@ -35,7 +32,6 @@ const roleMenus: Record<UserRole, { href: string; label: string; icon: string }[
     { href: "/admin/analytics", label: "Analytics", icon: "📈" },
     { href: "/admin/users", label: "Users", icon: "👥" },
     { href: "/admin/health", label: "System Health", icon: "💓" },
-    { href: "/", label: "Back to Site", icon: "🏠" },
   ],
 };
 
@@ -87,7 +83,7 @@ export function Sidebar({ role, userName }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "w-64 min-h-screen border-r border-border/50 backdrop-blur-xl flex flex-col transition-colors duration-300",
+        "fixed inset-y-0 left-0 w-64 h-screen border-r border-border/50 backdrop-blur-xl flex flex-col transition-colors duration-300 z-40",
         styles.sidebarBg
       )}
     >
@@ -144,7 +140,7 @@ export function Sidebar({ role, userName }: SidebarProps) {
       </nav>
 
       {/* Sign out */}
-      <div className="p-3 border-t border-border/50">
+      <div className="p-3 border-t border-border/50 mt-auto shrink-0 pb-6">
         <form action="/api/auth/signout" method="post">
           <button
             type="submit"

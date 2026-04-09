@@ -48,7 +48,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in relative">
+      <Link href="/" className="absolute -top-10 sm:-top-12 left-0 text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
+        ← Back to Home
+      </Link>
+
       {/* Logo */}
       <div className="text-center mb-8">
         <Link href="/" className="inline-flex items-center gap-2.5">

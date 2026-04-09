@@ -230,7 +230,7 @@ export const ALLOWED_TRANSITIONS: Record<AdStatus, AdStatus[]> = {
   "Payment Verified": ["Scheduled", "Published"],
   Scheduled: ["Published"],
   Published: ["Expired", "Archived"],
-  Expired: ["Archived"],
-  Archived: [],
+  Expired: ["Archived", "Draft"],
+  Archived: ["Draft"],
   Rejected: ["Draft"],
 };

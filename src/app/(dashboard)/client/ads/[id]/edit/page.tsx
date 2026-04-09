@@ -3,9 +3,12 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 
+import { createClient } from "@/lib/supabase/client";
+
 export default function EditAdPage() {
   const router = useRouter();
   const params = useParams();
+  const supabase = createClient();
   const adId = params.id as string;
 
   const [categories, setCategories] = useState<any[]>([]);
@@ -27,8 +30,12 @@ export default function EditAdPage() {
     Promise.all([
       fetch("/api/packages").then((r) => r.json()),
       fetch(`/api/client/ads/${adId}`).then((r) => r.json()),
-    ]).then(([pkgRes, adRes]) => {
+      supabase.from("categories").select("*").eq("is_active", true).order("name"),
+      supabase.from("cities").select("*").eq("is_active", true).order("name"),
+    ]).then(([pkgRes, adRes, catRes, cityRes]) => {
       if (pkgRes.success) setPackages(pkgRes.data);
+      if (catRes.data) setCategories(catRes.data);
+      if (cityRes.data) setCities(cityRes.data);
       
       if (adRes.success) {
         const ad = adRes.data;
@@ -93,6 +100,8 @@ export default function EditAdPage() {
     return <div className="p-10 text-center animate-pulse text-muted">Loading ad details...</div>;
   }
 
+  const selectedPackage = packages.find((p) => p.id === form.package_id);
+
   return (
     <div className="max-w-2xl">
       <h1 className="text-2xl font-bold mb-1">Edit Ad</h1>
@@ -121,10 +130,34 @@ export default function EditAdPage() {
           />
         </div>
 
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <label className="text-sm font-medium">Category</label>
+            <select
+              value={form.category_id} onChange={(e) => setForm({ ...form, category_id: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors"
+            >
+              <option value="">Select a category</option>
+              {categories.map((c: any) => <option key={c.id} value={c.id}>{c.name}</option>)}
+            </select>
+          </div>
+          
+          <div className="space-y-1.5">
+            <label className="text-sm font-medium">Region / City</label>
+            <select
+              value={form.city_id} onChange={(e) => setForm({ ...form, city_id: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors"
+            >
+              <option value="">Select a region</option>
+              {cities.map((c: any) => <option key={c.id} value={c.id}>{c.name}</option>)}
+            </select>
+          </div>
+        </div>
+
         {/* Package */}
         {packages.length > 0 && (
-          <div className="space-y-1.5">
-            <label className="text-sm font-medium">Package</label>
+          <div className="space-y-1.5 bg-card/50 p-4 rounded-xl border border-primary/20">
+            <label className="text-sm font-medium text-primary">Select Package</label>
             <select
               value={form.package_id} onChange={(e) => setForm({ ...form, package_id: e.target.value })}
               className="w-full px-3.5 py-2.5 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors"
@@ -134,6 +167,11 @@ export default function EditAdPage() {
                 <option key={pkg.id} value={pkg.id}>{pkg.name} — ${pkg.price} / {pkg.duration_days} days</option>
               ))}
             </select>
+            {selectedPackage && (
+              <p className="text-xs font-medium text-foreground mt-2">
+                💡 Your ad will run actively in this region for <strong className="text-primary">{selectedPackage.duration_days} days</strong> based on this package.
+              </p>
+            )}
           </div>
         )}
 

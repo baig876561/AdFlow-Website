@@ -91,8 +91,25 @@ export default function ClientDashboard() {
                   <p className="text-xs text-muted">
                     {ad.category?.name || "No category"} · Created {new Date(ad.created_at).toLocaleDateString()}
                   </p>
+                  {ad.status === "Published" && ad.expire_at && (
+                    <p className="text-[10px] text-emerald-500 font-medium mt-1">
+                      ⏳ Expires on {new Date(ad.expire_at).toLocaleDateString()}
+                    </p>
+                  )}
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
+                  {["Draft", "Rejected"].includes(ad.status) && (
+                    <button
+                      onClick={async () => {
+                        if (!confirm("Are you sure you want to delete this ad?")) return;
+                        await fetch(`/api/client/ads/${ad.id}`, { method: "DELETE" });
+                        window.location.reload();
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-destructive/10 text-destructive text-xs font-medium hover:bg-destructive/20 transition-colors"
+                    >
+                      Delete
+                    </button>
+                  )}
                   {["Draft", "Rejected"].includes(ad.status) && (
                     <Link href={`/client/ads/${ad.id}/edit`} className="px-3 py-1.5 rounded-lg bg-secondary text-xs font-medium hover:bg-border transition-colors">
                       Edit
@@ -117,6 +134,21 @@ export default function ClientDashboard() {
                     <Link href={`/client/ads/${ad.id}/payment`} className="px-3 py-1.5 rounded-lg bg-accent text-black text-xs font-medium hover:bg-accent/80 transition-colors">
                       Pay Now
                     </Link>
+                  )}
+                  {["Expired", "Archived"].includes(ad.status) && (
+                    <button
+                      onClick={async () => {
+                        await fetch(`/api/client/ads/${ad.id}`, {
+                          method: "PATCH",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ status: "Draft" }),
+                        });
+                        window.location.reload();
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-500 text-xs font-medium hover:bg-blue-500/20 transition-colors"
+                    >
+                      ↻ Renew Ad
+                    </button>
                   )}
                 </div>
               </div>
